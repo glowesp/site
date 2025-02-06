@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Question</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <div class="container">
+        <h1>Will you be my Valentine? 💝</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="accepted()">Yes</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let yesButtonSize = 1;
+        
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            // Make Yes button bigger
+            yesButtonSize += 0.2;
+            yesBtn.style.transform = `scale(${yesButtonSize})`;
+            
+            // Random position for No button
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function accepted() {
+            document.body.innerHTML = `
+                <div class="container">
+                    <h1>Yay! I'm so happy! ❤️</h1>
+                </div>
+            `;
+            createHearts();
+        }
+
+        function createHearts() {
+            const hearts = document.getElementById('hearts');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animation = 'float 4s linear forwards';
+                hearts.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }, 300);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Make sure buttons are visible on mobile
+            const container = document.querySelector('.container');
+            container.style.padding = '20px';
+            if (window.innerHeight < 600) {
+                container.style.transform = 'scale(0.8)';
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes float {
+            to {
+                transform: translateY(-100vh);
+            }
+        }
+    </style>
+</body>
+</html>
