@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="hearts" id="hearts"></div>
+    <div id="score-counter">Attempts: 0</div>
     <div class="container">
         <h1>Will you be my Valentine? 💝</h1>
         <div class="buttons">
@@ -22,6 +23,7 @@
         
         function handleNoButtonClick() {
             noButtonClicks++;
+            document.getElementById('score-counter').textContent = `Attempts: ${noButtonClicks}`;
             if (noButtonClicks >= 2) {
                 moveButton();
             }

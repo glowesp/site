@@ -59,3 +59,15 @@ button {
         transform: translateY(-100vh);
     }
 }
+
+#score-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #e91e63;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
