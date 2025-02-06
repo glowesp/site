@@ -12,12 +12,20 @@
         <h1>Will you be my Valentine? 💝</h1>
         <div class="buttons">
             <button id="yesBtn" onclick="accepted()">Yes</button>
-            <button id="noBtn" onmouseover="moveButton()">No</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="handleNoButtonClick()">No</button>
         </div>
     </div>
 
     <script>
         let yesButtonSize = 1;
+        let noButtonClicks = 0;
+        
+        function handleNoButtonClick() {
+            noButtonClicks++;
+            if (noButtonClicks >= 2) {
+                moveButton();
+            }
+        }
         
         function moveButton() {
             const noBtn = document.getElementById('noBtn');
@@ -42,7 +50,7 @@
         function accepted() {
             document.body.innerHTML = `
                 <div class="container">
-                    <h1>Yay! I'm so happy! ❤️</h1>
+                    <h1>YAY SOURDOUGH PIZZAAAA ❤️</h1>
                 </div>
             `;
             createHearts();
